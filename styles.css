@@ -16,10 +16,10 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #f5af19 100%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease infinite;
     color: var(--text-primary);
     height: 100vh;
     overflow: hidden;
@@ -45,51 +45,59 @@ body {
 .container::before {
     content: '';
     position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     z-index: -1;
 }
 
 /* 模式切换标签 */
 .mode-tabs {
     display: flex;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.25);
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
     padding: 6px;
     border-radius: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .mode-btn {
-    padding: 10px 20px;
+    padding: 10px 22px;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
     font-weight: 500;
-    border-radius: 20px;
+    border-radius: 24px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
 }
 
 .mode-btn:hover {
     color: white;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .mode-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+    color: #764ba2;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    font-weight: 600;
 }
 
 /* 计时器 */
@@ -102,8 +110,9 @@ body {
 
 .progress-ring {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
 }
 
 .progress-svg {
@@ -147,28 +156,32 @@ body {
 
 .time {
     display: block;
-    font-size: 72px;
-    font-weight: 200;
-    letter-spacing: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 80px;
+    font-weight: 300;
+    letter-spacing: 2px;
     font-variant-numeric: tabular-nums;
     color: white;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    text-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.2);
 }
 
 .status {
     display: block;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 12px;
-    font-weight: 400;
-    letter-spacing: 1px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* 控制按钮 */
 .controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 }
 
 .control-btn {
@@ -177,25 +190,50 @@ body {
     justify-content: center;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.control-btn:active::before {
+    width: 100%;
+    height: 100%;
 }
 
 .control-btn.primary {
-    width: 80px;
-    height: 80px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow:
+        0 10px 30px rgba(102, 126, 234, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2);
 }
 
 .control-btn.primary:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow:
+        0 15px 40px rgba(102, 126, 234, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
 }
 
 .control-btn.primary:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .control-btn.primary svg {
@@ -203,19 +241,28 @@ body {
 }
 
 .control-btn.secondary {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: white;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .control-btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.12) translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.control-btn.secondary:active {
+    transform: scale(0.95);
 }
 
 .control-btn.secondary svg {
@@ -225,33 +272,38 @@ body {
 /* 统计 */
 .stats {
     display: flex;
-    gap: 50px;
-    padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 60px;
+    padding: 24px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .stat-value {
-    font-size: 28px;
-    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 400;
     color: white;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .stat-label {
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
 }
 
 /* 设置面板 */
@@ -274,12 +326,14 @@ body {
 }
 
 .settings-content {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
-    width: 340px;
-    padding: 28px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-radius: 28px;
+    width: 360px;
+    padding: 32px;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalSlideIn {
@@ -336,14 +390,24 @@ body {
 }
 
 .setting-item input[type="number"] {
-    width: 60px;
-    padding: 8px 12px;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    width: 64px;
+    padding: 10px 14px;
+    background: rgba(118, 75, 162, 0.05);
+    border: 2px solid rgba(118, 75, 162, 0.1);
+    border-radius: 12px;
     color: var(--text-primary);
     font-size: 14px;
+    font-weight: 500;
     text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s ease;
+}
+
+.setting-item input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(118, 75, 162, 0.3);
+    background: rgba(118, 75, 162, 0.08);
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
 }
 
 /* 开关样式 */
@@ -417,30 +481,59 @@ input:checked + .slider:before {
 
 /* 动画 */
 @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.85; transform: scale(0.98); }
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(0.985);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 255, 255, 0.3);
+    }
 }
 
 .timer-running .time {
-    animation: pulse 2s ease-in-out infinite;
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* 浮动装饰元素 */
 .container::after {
     content: '';
     position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 60%);
+    border-radius: 50%;
+    top: -200px;
+    right: -150px;
+    z-index: -2;
+    animation: float 25s ease-in-out infinite;
+    filter: blur(40px);
+}
+
+.container .deco-orb {
+    position: fixed;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 65%);
     border-radius: 50%;
-    top: -150px;
-    right: -100px;
+    bottom: -100px;
+    left: -80px;
     z-index: -2;
-    animation: float 20s ease-in-out infinite;
+    animation: float2 30s ease-in-out infinite;
+    filter: blur(30px);
 }
 
 @keyframes float {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(-30px, 30px) scale(1.1); }
-    66% { transform: translate(20px, -20px) scale(0.9); }
+    25% { transform: translate(-40px, 40px) scale(1.15); }
+    50% { transform: translate(20px, 60px) scale(0.9); }
+    75% { transform: translate(50px, -20px) scale(1.05); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -40px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
 }
