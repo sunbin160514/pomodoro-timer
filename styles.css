@@ -5,14 +5,14 @@
 }
 
 :root {
-    --primary-color: #f97316;
-    --primary-dark: #ea580c;
-    --secondary-color: #fb923c;
-    --bg-color: #fff7ed;
-    --card-bg: #ffedd5;
-    --text-primary: #431407;
-    --text-secondary: #9a3412;
-    --border-color: rgba(249, 115, 22, 0.2);
+    --primary-color: #8b5cf6;
+    --primary-dark: #7c3aed;
+    --secondary-color: #a78bfa;
+    --bg-color: #f5f3ff;
+    --card-bg: #ede9fe;
+    --text-primary: #3c1f95;
+    --text-secondary: #6d28d9;
+    --border-color: rgba(139, 92, 246, 0.2);
 }
 
 body {
@@ -100,11 +100,11 @@ body {
 }
 
 .mode-shortBreak .progress-bar {
-    stroke: #fb923c;
+    stroke: #a78bfa;
 }
 
 .mode-longBreak .progress-bar {
-    stroke: #fdba74;
+    stroke: #c4b5fd;
 }
 
 .timer-display {
